@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.number {
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  color: white;
+  display: flex;
+  font-size: 28px;
+  margin: 52px;
+  text-align: center;
+}
+.number.black {
+  background-color: black;
+}
+
+.number.red {
+  background-color: red;
+}
+
