@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+.line {
+  width: 150px;
+  height: 157px;
+  overflow: hidden;
+}
+img.image {
+  width: 100%;
+}
+.cnt{
+  background-image: url(../src/images/bg.png);
+  transition-duration: 5s;
+  height: 100000px;
+  background-repeat: repeat-y;
+  background-size: contain;
+}
+.linecontainer {
+  display: flex;
+}
+
+.cell {
+  width: 140px;
+  height: 148px;
+  border: 5px solid gold;
+  z-index: 9999 !important;
+  position: absolute;
+}

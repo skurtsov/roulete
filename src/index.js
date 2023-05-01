@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const defaultstate ={
-  cash:0,
+  cash:100,
 }
 const reducer =(state = defaultstate, action)=>{
   switch(action.type){
