@@ -7,8 +7,9 @@ import {legacy_createStore as createStore} from 'redux'
 import { Provider } from 'react-redux';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+
 const defaultstate ={
-  cash:100,
+  cash:0,
 }
 const reducer =(state = defaultstate, action)=>{
   switch(action.type){
@@ -16,6 +17,8 @@ const reducer =(state = defaultstate, action)=>{
       return{...state, cash: state.cash + action.payload}
     case "GET_CASH":
       return{...state, cash: state.cash - action.payload}
+      case "INIT_CASH":
+        return{...state, cash: action.payload}
     default:
       return state
   }

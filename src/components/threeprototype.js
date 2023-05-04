@@ -8,7 +8,7 @@ import Line from './components/line.jsx';
 function App() {
   const [slot,setSlot] = useState([1,2,3,1,5])
   const [keyframes,setKeyframes] = useState([25496,25644,25801,25948,26095])
-  const [lastwin, setLastWin] = useState(0)
+
   const [stavka,setstavka] = useState('red')
   let q=0
   const [anim,setAnim]=useState(11)
@@ -50,61 +50,47 @@ function App() {
 
   const Spin = (bet) => {
     get_cash(bet)
-    let variaty =[Math.floor(Math.random() * 5),Math.floor(Math.random() * 5),Math.floor(Math.random() * 5)]
+    let variaty =[]
     //is I Win
-    if(variaty[0]==variaty[1]&& variaty[1]==variaty[2]&&variaty[2]==1){
-      setTimeout(() =>
-        add_cash(bet * 2), 5000)
-        setLastWin(bet * 2)
+    let seed = Math.floor(Math.random() * 100 + 1)
+    if(seed < 65){
+      let one=Math.floor(Math.random() * 5)
+      let two=Math.floor(Math.random() * 5)
+      let three=Math.floor(Math.random() * 5)
+      if(one ==two && two==three){
+         one=Math.floor(Math.random() * 5)
+         two=Math.floor(Math.random() * 5)
+         three=Math.floor(Math.random() * 5)
+      }
+      else{
+       variaty =[one,two,three]
+      }
     }
-    else if(variaty[0]==variaty[1]&& variaty[1]==variaty[2]&&variaty[2]==2){
-      setTimeout(() => {
-        add_cash(bet*3)
-        setLastWin(bet * 3)
+    else if(seed<80){
+      variaty =[0,0,0]
+      add_cash(bet*1.5)
+      console.log('you win')
+    }
+    else if(seed<90){
+      variaty =[1,1,1]
+      add_cash(bet*2)
+      console.log('you win')
+    }
+    else if(seed<95){
+      variaty =[2,2,2]
+      add_cash(bet*3)
+      console.log('you win')
 
-        console.log('You win:'+variaty[0]+variaty[1]+variaty[2]+'is:'+bet*4)
-      }, 5000)
-    }
-    else if(variaty[0]==variaty[1]&& variaty[1]==variaty[2]&&variaty[2]==3){
-      setTimeout(() => {
-        add_cash(bet*4)
-        setLastWin(bet * 4)
 
-        console.log('You win:'+variaty[0]+variaty[1]+variaty[2]+'is:'+bet*5)
-      }, 5000)
-    }
-    else if(variaty[0]==variaty[1]&& variaty[1]==variaty[2]&&variaty[2]==4){
-      setTimeout(() => {
-        add_cash(bet*5)
-        setLastWin(bet * 5)
+    } else if(seed<99){
+      variaty =[3,3,3]
+      add_cash(bet*5)
+      console.log('you win')
 
-        console.log('You win:'+variaty[0]+variaty[1]+variaty[2]+'is:'+bet*6)
-      }, 5000)
-    }
-    else if(variaty[0]==variaty[1]&& variaty[1]==variaty[2]&&variaty[2]==5){
-      setTimeout(() => {
-        add_cash(bet*6)
-        setLastWin(bet * 6)
 
-        console.log('You win:'+variaty[0]+variaty[1]+variaty[2]+'is:'+bet*7)
-      }, 5000)
     }
-    else if(variaty[0]==variaty[1]&& variaty[1]==variaty[2]&&variaty[2]==0){
-      setTimeout(() => {
-        add_cash(bet*7)
-        setLastWin(bet * 7)
-
-        console.log('You win:'+variaty[0]+variaty[1]+variaty[2]+'is:'+bet*8)
-      }, 5000)
-    }
-    else if(variaty[0]==variaty[1] || variaty[1]==variaty[2]){
-      setTimeout(() => {
-        add_cash(bet*1,5)
-        setLastWin(bet * 1.5)
-
-        console.log('You win:'+variaty[0]+variaty[1]+variaty[2]+'is:'+bet*2)
-      }, 5000)
-    }
+ 
+    ////
           //variaty[0]==variaty[1]&& variaty[1]==variaty[2]&&variaty[2]==0
     console.log(variaty)
     
@@ -149,27 +135,17 @@ let setmyslot=(index)=>slot.map((c, i) => {
     return (
     <div className="App">
       <div className="container">
-        <div className='slotbg'>
-          <img src={require('./images/bckg.png')}/>
-          </div>
         <div className='linecontainer'>
       <Line translate={translateY_1}/>
       <Line translate={translateY_2}/>
       <Line translate={translateY_3}/>
   </div>
-  <div className='buttons'>
-  <div className='btn' onClick={()=>Spin(10)}>Go stavka 10</div>
+      <div className='btn' onClick={()=>Spin(10)}>Go stavka 10</div>
       <div className='btn' onClick={()=>Spin(50)}>Go stavka 50</div>
       <div className='btn btnmax' onClick={()=>Spin(100)}>Go stavka 100</div>
-      {/* <div className='btn btnmax' onClick={()=>setInterval(()=>Spin(100),6000)}>Auto</div> */}
-  </div>
+      <div className='btn btnmax' onClick={()=>setInterval(()=>Spin(100),6000)}>Auto</div>
 
-<div className='results'>
-
-<h1>Баланс: {cash}</h1>
-          <h1>Последний выигрыш: {lastwin}</h1>
-</div>
-
+          <h1>{cash}</h1>
     </div>
     </div>
   );
