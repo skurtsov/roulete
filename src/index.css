@@ -35,4 +35,16 @@ code {
 .number.red {
   background-color: red;
 }
-
+.upbet, .downbet {
+  background: linear-gradient(93.86deg, #FFCB46 3.95%, #FFDE88 26.05%, #FFE091 40.73%, #FFCB44 61.42%);
+  color: #000;
+  height: 28px;
+  width: 22px;
+  margin-top: 2px;
+  cursor: pointer;
+  user-select: none;
+}
+.controlbet {
+  position: relative;
+  left: 30px;
+}
