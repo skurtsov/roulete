@@ -3,6 +3,8 @@ import { useDispatch, useSelector,dispatch } from 'react-redux';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import ReactDOM from 'react-dom';
+import '../scss/main.css';
+import Sidebar from './Sidebar';
 
 function Main() {
     const dispatch = useDispatch()
@@ -30,16 +32,47 @@ function Main() {
       ];
     return (
         <div class="mainmenu">
+               <Sidebar/>
                     <h1>Main {cash}</h1>
-                    <Carousel swipeable={true} emulateTouch={true} showArrows={false} showThumbs={false} showIndicators={false} showStatus={false} axis='horizontal'>
-                <div>
+                    <Carousel swipeable={true} emulateTouch={true} showArrows={false} showThumbs={false} showIndicators={false} showStatus={false} infiniteLoop={true} axis='horizontal'>
+                    <div>
                     <img src={require('../images/1.png')} />
+                    <a href="/slots">
+                    <div className="buttonborder buttonmenu" >
+                            <div className="button" >
+                            Play
+                            </div>
+                            <div className="lineq">
+                            <div className="linerotate"></div>
+                            </div>
+                            </div>
+                    </a>
                 </div>
                 <div>
                     <img  src={require('../images/2.png')} />
+                    <a href="/slots">
+                    <div className="buttonborder buttonmenu" >
+                            <div className="button" >
+                            Play
+                            </div>
+                            <div className="lineq">
+                            <div className="linerotate"></div>
+                            </div>
+                            </div>
+                    </a>
                 </div>
                 <div>
                     <img  src={require('../images/3.png')} />
+                    <a href="/slots">
+                    <div className="buttonborder buttonmenu" >
+                            <div className="button" >
+                            Play
+                            </div>
+                            <div className="lineq">
+                            <div className="linerotate"></div>
+                            </div>
+                            </div>
+                    </a>
                 </div>
             </Carousel>
         </div>

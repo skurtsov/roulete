@@ -72,9 +72,15 @@ async function pay() {
   console.log(cash)
   const add_cash=(cc)=>{
     dispatch({type:"ADD_CASH",payload:cc})
+    setTimeout(() => {
+      updateBallance(cash)
+  }, 6000)
   }
   const get_cash=(cc)=>{
     dispatch({type:"GET_CASH",payload:cc})
+    setTimeout(() => {
+      updateBallance(cash-cc)
+  }, 6000)
   }
   const init_cash=(cc)=>{
     dispatch({type:"INIT_CASH",payload:cc})
@@ -112,6 +118,7 @@ async function pay() {
     PressSound()
     setTimeout(playSound(),100)
     get_cash(bet)
+
     let variaty =[Math.floor(Math.random() * 5),Math.floor(Math.random() * 5),Math.floor(Math.random() * 5)]
     //is I Win
     if(variaty[0]==variaty[1]&& variaty[1]==variaty[2]&&variaty[2]==1){
@@ -186,7 +193,6 @@ async function pay() {
       setTranslateY_3(-(startframes[variaty[2]]));
       console.log('tr reset'+translateY_1)
 
-    updateBallance(cash)
   }
   else{
     setTranslateY_1(-(keyframes[variaty[0]]));
@@ -208,6 +214,7 @@ async function pay() {
 
 
   };
+
 let setmyslot=(index)=>slot.map((c, i) => {
       if (i === index) {
         // Increment the clicked counter
@@ -218,12 +225,19 @@ let setmyslot=(index)=>slot.map((c, i) => {
       }
     });
     let updateBallance=(qnt)=>{
+      // var xml = new XMLHttpRequest();
+      //   xml.open("GET", "https://makemesites.com/slots/setbalance.php?bal="+qnt, false);
+      //   xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      //   xml.send();
+      //   alert('updated'+qnt)
       var xml = new XMLHttpRequest();
-        xml.open("GET", "https://makemesites.com/slots/setbalance.php?bal="+qnt, false);
-        xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xml.send();
-        alert('updated')
-    
+      xml.onreadystatechange = function() {
+          if (xml.readyState === 4 && xml.status === 200) {
+              alert('updated ' + qnt);
+          }
+      };
+      xml.open("GET", "https://makemesites.com/slots/setbalance.php?bal=" + qnt, true);
+      xml.send();
     }
     
     return (

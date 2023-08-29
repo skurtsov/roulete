@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './scss/main.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
